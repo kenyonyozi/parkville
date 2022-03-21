@@ -1,0 +1,173 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: whitesmoke;
+  /* font-family: 'GT Walsheim Pro'; */
+}
+.btn:focus{
+  outline: none;
+  box-shadow: none;
+}
+.offcanvas-title {
+  text-align: center;
+  /* margin-bottom: 10%; */
+  margin-right: 30px;
+  color: #2eb875;
+  font-weight: 1000;
+  font-size: 28px;
+}
+
+.offcanvas-header {
+  padding: 1rem 2rem;
+}
+
+.offcanvas-body {
+  padding: 1rem 0rem;
+}
+/* the hr */
+hr {
+  margin-bottom: 20px;
+}
+/* logo two */
+.logo-two {
+  text-align: center;
+  margin-right: 30px;
+  /* font-size: medium; */
+  color: #757575;
+}
+.sidenav a {
+  text-decoration: none;
+  color: #818181;
+}
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+  color: rgb(115, 194, 115);
+}
+
+/* The navigation menu links */
+.sidenav {
+  padding: 5px 5px 8px 32px;
+  font-size: 17px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+.money {
+  margin-top: 25px;
+  font-weight: bolder;
+  font-size: larger;
+}
+.home {
+  padding-bottom: 40px;
+}
+.user {
+  padding-bottom: 40px;
+}
+.price {
+  padding-bottom: 40px;
+}
+.log-out {
+  padding: 5px 5px 40px 32px;
+  font-size: 17px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+.log-out a {
+  color: #818181;
+  text-decoration: none;
+}
+
+#content {
+  margin-right: 10px;
+  margin-left: 10px;
+  margin-top: 40px;
+  margin-bottom: 30px;
+}
+.welcome {
+  margin-left: 50px;
+  margin-bottom: 30px;
+}
+.welcome h4 {
+  font-size: xx-large;
+  font-weight: lighter;
+  font-family: euclidCircularB, Arial, sans-serif;
+  padding-bottom: 10px;
+}
+.welcome p {
+  font-size: medium;
+  font-family: euclidCircularB, Arial, sans-serif;
+  font-weight: bolder;
+  color: #2eb875;
+}
+span {
+  padding-right: 10px;
+}
+/* the cards */
+#content {
+  margin-top: 20px;
+  margin-bottom: 100px;
+}
+.card {
+  margin-left: 50px;
+  margin-right: 50px;
+  box-shadow: rgb(0 0 0 / 15%) 0px 2px 8px;
+  border-radius: 0.5rem;
+  width: 88%;
+  height: 300px;
+  text-align: center;
+}
+
+.offcanvas-start {
+  width: 300px !important;
+}
+#card-one {
+  font-size: 1.15rem;
+  color: #48484d;
+  text-align: center;
+}
+#card-one h5{
+  font-size: small;
+  margin-top: 100px;
+  font-weight: 100;
+  color: #757575;
+  /* margin-bottom: 50px; */
+}
+#card-one span{
+  margin-left: 20px;
+}
+#title-one {
+  font-family: euclidCircularB, Arial, sans-serif;
+}
+#text-one h5 {
+  color: #757575;
+  font-size: 1rem;
+} 
+ #data-button {
+  float: right;
+  font-family: euclidCircularB, Arial, sans-serif;
+}
+.notify {
+  float: right;
+}
+
+th {
+  background-color: blue;
+  color: white;
+} 
+
+.m-b-35 {
+  margin-bottom: unset !important;
+}
+#table-head {
+  /* margin-top: 20px; */
+  margin-left: 50px;
+}
+#table-content {
+  margin-top: 20px;
+  margin-left: 35px;
+  margin-right: 50px;
+} 
+/* the table */
+
+/* in test.html */

@@ -1,0 +1,32 @@
+{
+  "name": "pug-work",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kenyonyozi/pug-work.git"
+  },
+  "author": "nina",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kenyonyozi/pug-work/issues"
+  },
+  "homepage": "https://github.com/kenyonyozi/pug-work#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.2",
+    "connect-flash": "^0.1.1",
+    "express": "^4.17.3",
+    "express-messages": "^1.0.1",
+    "express-validator": "^5.3.0",
+    "mongoose": "^6.2.6",
+    "nodemon": "^2.0.15",
+    "passport": "^0.5.2",
+    "pug": "^3.0.2"
+  }
+}
