@@ -18,14 +18,14 @@ head
       form#form
         .mb-3
           label.form-label(for='exampleInputEmail1') Email address
-          input#exampleInputEmail1.form-control(type='password' name='' placeholder='john.doe@gmail.com')
+          input#exampleInputEmail1.form-control(type='text' name='' placeholder='john.doe@gmail.com')
         .mb-3
           label.form-label(for='exampleInputPassword1') Password
           input#exampleInputPassword1.form-control(type='password' name='' placeholder='******')
         button#submit.btn.btn-success.btn-lg.btn-block(name='' type='submit' style='width:50%; height:43px; margin-top: 10px; font-weight: lighter;' value='Submit')
           | login 
           i.fa.fa-arrow-right(aria-hidden='true')
-      //- p
-      //-   | No account?
-      //-   a(href='/signup')  Signup here.
+      p
+        | No account?
+        a(href='/signup')  Signup here.
 

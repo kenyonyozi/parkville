@@ -8,7 +8,14 @@ const passport = require('passport');
 const expressValidator = require('express-validator');
 // the port app will run on
 // const port = process.env.port || 4000;
-
+const User = require('./models/User');
+// when you leave a feild you it should not be save a detetail
+const expressSession = require('express-session')({
+    secret: 'secret',
+    resave: false,
+    saveUninitialized: false
+  });
+  
 // impoting routes
 // importing the databases configuration
 const config = require('./config/database');
@@ -46,14 +53,27 @@ db.on('error',(err)=>{
 // must be used during pug
 app.engine('pug', require('pug').__express); 
 app.set('view engine','pug');
-
 app.set('views', path.join(__dirname,'views'));
 
+// MIDDLEWARE
 // bodypaser middleware section
 // extended means when node uses body parser get the forms the way they are and focus on input fields
 app.use(bodyParser.urlencoded({extended:false}));
 // telling bodyparser to use json formate when exposing the fields
 app.use(bodyParser.json());
+app.use(expressSession);
+
+// respon for email and password were captured
+// intialize is a method that helps us capture 
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(User.createStrategy());
+// inbuilt method
+// when i log into system a serial no is given to me so thesystem is knows id
+passport.serializeUser(User.serializeUser());
+// forgetting the serial no when log out happens 
+passport.deserializeUser(User.deserializeUser());
+
 
 // validator middle ware
 // app.use(expressValidator({
@@ -88,12 +108,20 @@ app.use(express.static(path.join(__dirname,"public")));
 app.use('/',loginRoutes);
 app.use('/',homeRoutes);
 app.use('/',dashRoutes);
+// the sign up route is handling get n post methods
 app.use('/',signupRoutes);
 // post sign up tp call the post method of the form the action specified in the form attribute
 // same varible for signup routs to call the form
 // app.use('/',signupRoutes);
 
+// For invalid routes as in if someone hits a non existent route.
+//This should always be the last route after all other routes are excecuted.
+//the message that appears in case someone searches for a route that doesnt exist on my server
 
+app.get('*', (req, res) => {
+    res.status(404).send('no such page')
+  })
+  
 
 app.listen(3000,()=>{
     console.log('server is listening at port 3000');

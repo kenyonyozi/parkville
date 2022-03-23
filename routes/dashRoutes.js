@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 
 router.use(expressValidator());
 // requring the schema of dash from the model
-const Dash = require('../models/dash')
+const Client = require('../models/Client')
 
 // handling routes of dash
 router.get('/dash',(req,res)=>{

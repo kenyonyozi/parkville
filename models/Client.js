@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const dashSchema = mongoose.Schema({
+const clientSchema = mongoose.Schema({
     firstname:{
         type: String,
         required:true
@@ -63,4 +63,4 @@ const dashSchema = mongoose.Schema({
 });
 
 // exporting the schema 
-const Dash = module.exports = mongoose.model('Dash',dashSchema);
+const Client = module.exports = mongoose.model('Client', clientSchema);
