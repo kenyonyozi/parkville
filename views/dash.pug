@@ -19,7 +19,7 @@ div
     i.bi.bi-list(style='')
   #offcanvasExample.offcanvas.offcanvas-start(tabindex='-1' aria-labelledby='offcanvasExampleLabel')
     .offcanvas-header
-      h5#offcanvasExampleLabel.offcanvas-title | ParkVille
+      h5#offcanvasExampleLabel.offcanvas-title | ParkVille 
       button.btn-close.text-reset(type='button' data-bs-dismiss='offcanvas' aria-label='Close')
     .offcanvas-body
       .sidenav
@@ -36,21 +36,21 @@ div
             i.bi.bi-tags
           a(href='') Prices
       hr
-      .log-out
-        a(href='/signup')
-        button.btn.btn-success(type='button') Signup
+      //- .log-out
+      //-   a(href='/signup')
+      //-   button.btn.btn-success(type='button') Signup
         
       .log-out
         span
           i.bi.bi-box-arrow-right
-        a(href='/home') Log Out
+        a(href='/logout') Log Out
   // the content
   div
     .welcome
       h4
         span
           i.bi.bi-person
-        | Hello Moses,
+        | Hello ,
       p Here is an over view of all ParkVille business activities
     // cards
     .row
@@ -166,13 +166,8 @@ div
                   input#inputrecipt.form-control(type='text' name='receipt')
                 button.btn.btn-outline-secondary(type='button' data-bs-dismiss='modal')
                 | Close
-                button.btn.btn-outline-success(type='submit' value='Submit' name="")
-                  | Register
-            //- .modal-footer
-            //-   button.btn.btn-outline-secondary(type='button' data-bs-dismiss='modal')
-            //-     | Close
-            //-   button.btn.btn-outline-success(type='submit' value='Submit' name="")
-            //-     | Register
+                button.btn.btn-outline-success(type='submit' value='Submit' name="") 
+                | Register 
       .btn-group
         button#export-button.btn.btn-dark(type='button')
           i.bi.bi-file-earmark-arrow-down
@@ -187,6 +182,7 @@ div
         ul.dropdown-menu
           li
             a.dropdown-item(href='#') Action
+             
           li
             a.dropdown-item(href='#') Another action
           li
@@ -212,44 +208,38 @@ div
   // table
   .container
     .table-responsive.table-responsive-data2
-      table.table.table-data2(onload='allClient')
+      table.table.table-data2
         thead
           tr
-            th
-              label.au-checkbox
-                input(type='checkbox')
-                span.au-checkmark
             th Name
             th Number plate
             th Service
             th Duration
             th Description
             th Price
-            th
+            
         tbody
-          tr.tr-shadow
-            td
-              label.au-checkbox
-                input(type='checkbox')
-                span.au-checkmark
-            td Lori Lynch
-            td
-              span.block-email ubk 441k
-            td.desc parking
-            td day
-            td
-              span.status--process personal car
-            td ugx 3000
-            td
-              .table-data-feature
-                button.item(data-toggle='tooltip' data-placement='top' title='Send')
-                  i.bi.bi-send
-                button.item(data-toggle='tooltip' data-placement='top' title='Edit')
-                  i.bi.bi-pencil-square(style='color:green;')
-                button.item(data-toggle='tooltip' data-placement='top' title='Delete')
-                  i.bi.bi-trash(style='color:red;')
-                button.item(data-toggle='tooltip' data-placement='top' title='More')
-                  i.bi.bi-three-dots
+          if clients.length
+          each client in clients 
+           tr.tr-shadow
+              td #{client.firstname}
+              td #{client.numberplate}
+                span.block-email
+              td #{client.service}
+              td #{client.duration}
+              td #{client.description}
+                span.status--process
+              td #{client.paidprice}
+              td 
+                .table-data-feature
+                  button.item(data-toggle='tooltip' data-placement='top' title='Send')
+                    i.bi.bi-send
+                  button.item(data-toggle='tooltip' data-placement='top' title='Edit')
+                    i.bi.bi-pencil-square(style='color:green;')
+                  button.item(data-toggle='tooltip' data-placement='top' title='Delete')
+                    i.bi.bi-trash(style='color:red;')
+                  button.item(data-toggle='tooltip' data-placement='top' title='More')
+                    i.bi.bi-three-dots
           // stop
       // END DATA TABLE
 script(src='/dash.js')

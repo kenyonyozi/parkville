@@ -9,9 +9,28 @@ router.use(expressValidator());
 const Client = require('../models/Client')
 
 // handling routes of dash
-router.get('/dash',(req,res)=>{
-    // give me the dash board at this route and res with dash
-    res.render('dash')
+// router.get('/dash',(req,res)=>{
+//     // give me the dash board at this route and res with dash
+//     res.render('dash')
+// });
+
+//handles fetching client data from the db to populate the table
+router.get('/dash', async(req,res)=>{
+    // to pick data from the 
+    try {
+        // helps return all the members in the collection clients
+        const data = await Client.find({});
+        console.log('>>>>>> all clients',data);
+        // gives us the file dash and come with the client data or client has same info with data
+        res.render('dash', {clients : data})
+      } catch(error) {
+        return res.status(400).send(
+          { 
+            status: 400,
+            message: 'Oops failed to fetch all clients',
+            error
+          });
+    }
 });
 
 // handling routes of dash for post to access reg form on route /dash
@@ -45,7 +64,7 @@ router.post('/dash',(req,res)=>{
     else{
         // new variable asssigin it 
         // value(property name from schema):property(varible name in route)
-        let newDash = new Dash({
+        let newClient = new Client({
             firstname:firstname,
             phonenumber:phonenumber,
             ninnumber: ninnumber,
@@ -65,7 +84,7 @@ router.post('/dash',(req,res)=>{
         // saving the data
         // case of error return err incase no error give message in console and give dash 
         // controllers
-        newDash.save((err) =>{
+        newClient.save((err) =>{
 
             if(err){
                 console.error(err);
@@ -74,7 +93,7 @@ router.post('/dash',(req,res)=>{
             else{
                 // we first flash a message confirm save in data base
                 // go to dashboard since user signed up
-                console.log('data saved in database');
+                console.log('data saved in database', );
                 res.redirect('/dash')
             }
         })

@@ -15,10 +15,10 @@ const userSchema = mongoose.Schema({
         required:true,
         unique:true
     },
-    // password:{
-    //     type:String,
-    //     required:true
-    // },
+    password:{
+        type:String,
+        required:true
+    },
 });
 // set the user name feild which is email
 userSchema.plugin(passportLocalMongoose, {

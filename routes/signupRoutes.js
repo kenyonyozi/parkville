@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
 const expressValidator= require('express-validator');
 
 
@@ -26,7 +27,18 @@ router.post('/signup', async (req,res)=>{
             return res.status(400).send('user with simliar already email taken please use another email');
         }
         else{
-            // already has incrytion in the method register
+
+            // bcrypt to hide password
+            bcrypt.genSalt(7,(err,salt)=>{
+                bcrypt.hash(newUser.password,salt,(err,hash)=>{
+                    if (err) {
+                        console.error(err)
+                        return;
+                    }
+                    newUser.password = hash
+                })
+            })
+            // already has incryption in the method register
             await User.register(newUser, req.body.password, (err) => {
                 if(err){
                     throw error;

@@ -5,6 +5,7 @@ const flash = require('connect-flash');
 const mongoose = require('mongoose');
 const path = require('path');
 const passport = require('passport');
+const cors = require('cors')
 const expressValidator = require('express-validator');
 // the port app will run on
 // const port = process.env.port || 4000;
@@ -67,6 +68,15 @@ app.use(expressSession);
 // intialize is a method that helps us capture 
 app.use(passport.initialize());
 app.use(passport.session());
+// it helps log into the syetem
+app.use(cors());
+
+// after getting the usser is ging to be compared
+app.get('*',(req,res,next)=>{
+    res.locals.user = req.user || null;
+    next();
+});
+
 passport.use(User.createStrategy());
 // inbuilt method
 // when i log into system a serial no is given to me so thesystem is knows id
@@ -117,7 +127,6 @@ app.use('/',signupRoutes);
 // For invalid routes as in if someone hits a non existent route.
 //This should always be the last route after all other routes are excecuted.
 //the message that appears in case someone searches for a route that doesnt exist on my server
-
 app.get('*', (req, res) => {
     res.status(404).send('no such page')
   })
