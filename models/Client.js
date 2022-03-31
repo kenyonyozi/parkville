@@ -49,7 +49,7 @@ const clientSchema = mongoose.Schema({
         required:true
     },
     paidprice:{
-        type: String,
+        type: Number,
         required:true
     },
     batteryprice:{

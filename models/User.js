@@ -20,7 +20,7 @@ const userSchema = mongoose.Schema({
         required:true
     },
 });
-// set the user name feild which is email
+// set the user name feild which is email login
 userSchema.plugin(passportLocalMongoose, {
     usernameField: "email",
   });

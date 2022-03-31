@@ -63,7 +63,9 @@ div
                 i.bi.bi-eye-slash-fill
                 | Hide Balance
             .card-text.money
-              span UGX 500,000
+            if clients.length
+            each client in clients
+              span #{client.paidprice}
               span.fi.fi-gr
       .col-sm-6
         
@@ -150,14 +152,14 @@ div
                     option Night
                 .col-md-4
                   label.form-label(for='inputprice') Paid Price UGX
-                  select#inputprice.form-select(type='text' name='paidprice')
+                  select#inputprice.form-select(type='number' name='paidprice')
                     option(selected='') choose
-                    option 10,000UGX
-                    option  5,000UGX
-                    option  3,000UGX
-                    option  2,000UGX
-                    option  1,000UGX
-                    option  500UGX
+                    option 10000
+                    option  5000
+                    option  3000
+                    option  2000
+                    option  1000
+                    option  500
                 .col-md-4
                   label.form-label(for='inputrecipt') battery price
                   input#inputrecipt.form-control(type='text' name='batteryprice')
