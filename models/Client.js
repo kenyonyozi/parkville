@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const clientSchema = mongoose.Schema({
-    firstname:{
+    name:{
         type: String,
         required:true
     },
@@ -9,6 +9,10 @@ const clientSchema = mongoose.Schema({
         required:true
     },
     ninnumber:{
+        type: String,
+        required:true
+    },
+    color:{
         type: String,
         required:true
     },
@@ -25,10 +29,6 @@ const clientSchema = mongoose.Schema({
         required:true
     },
     time:{
-        type: String,
-        required:true
-    },
-    color:{
         type: String,
         required:true
     },
@@ -56,10 +56,22 @@ const clientSchema = mongoose.Schema({
         type: String,
         required:true
     },
-    receipt:{
+    batterysize:{
         type: String,
         required:true
-    }
+    },
+    cartyreprice:{
+        type: String,
+        required:true
+    },
+    cartyresize:{
+        type: String,
+        required:true
+    },
+    cartyremake:{
+        type: String,
+        required:true
+    },
 });
 
 // exporting the schema 

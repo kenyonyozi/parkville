@@ -4,26 +4,21 @@ const passport = require('passport');
 const expressValidator= require('express-validator');
 const mongoose = require('mongoose');
 
-router.use(expressValidator());
-// requring the schema of dash from the model
-const Client = require('../models/Client')
-
-// handling routes of dash
-// router.get('/dash',(req,res)=>{
-//     // give me the dash board at this route and res with dash
-//     res.render('dash')
+// handling routes of home
+// router.get('/signoff',(req,res)=>{
+//     res.render('signoff')
 // });
 
+
 //handles fetching client data from the db to populate the table
-router.get('/dash', async(req,res)=>{
+router.get('/signoff', async(req,res)=>{
     // to pick data from the 
     try {
         // helps return all the members in the collection clients
         const data = await Client.find({});
         console.log('>>>>>> all clients',data);
-        // let totalPayprice = await Client.aggregate({totalPayprice:{$sum: '$paidprice'}})
         // gives us the file dash and come with the client data or client has same info with data
-        res.render('dash', {clients : data})
+        res.render('signoff', {clients : data})
       } catch(error) {
         return res.status(400).send(
           { 
@@ -33,10 +28,9 @@ router.get('/dash', async(req,res)=>{
           });
     }
 });
-
 // handling routes of dash for post to access reg form on route /dash
 // post from frontend using the dash route to backend 
-router.post('/dash',(req,res)=>{
+router.post('/signoff',(req,res)=>{
     // declaring the variables in the pug file name
     // we are requesting node js to foward the data and the body with the name given only uses name
     const name = req.body.name;
@@ -48,28 +42,18 @@ router.post('/dash',(req,res)=>{
     const date= req.body.date;
     const time= req.body.time;
     const gender= req.body. gender;
-    const service= req.body.service;
-    const description= req.body.description;
-    const duration= req.body.duration;
-    const paidprice= req.body.paidprice;
-    const batteryprice= req.body.batteryprice;
-    const batterysize= req.body.batterysize;
-    const cartyreprice= req.body.cartyreprice;
-    const cartyresize= req.body.cartyresize;
-    const cartyremake= req.body.cartyremake;
     
-   
     // handling errors
     // incase there is an error we serve back the form
     const errors = req.validationErrors();
     console.log();
     if (errors) {
-        res.render('/dash')
+        res.render('/signoff')
     }
     else{
         // new variable asssigin it 
         // value(property name from schema):property(varible name in route)
-        let newClient = new Client({
+        let newSignoff = new Signoff({
             name:name,
             phonenumber:phonenumber,
             ninnumber: ninnumber,
@@ -79,20 +63,11 @@ router.post('/dash',(req,res)=>{
             date: date,
             time:time,
             gender: gender,
-            service:service,
-            description:description,
-            duration:duration,
-            paidprice:paidprice,
-            batteryprice:batteryprice,
-            batterysize:batterysize,
-            cartyreprice:cartyreprice,
-            cartyresize:cartyresize,
-            cartyremake:cartyremake,
         });
         // saving the data
         // case of error return err incase no error give message in console and give dash 
         // controllers
-        newClient.save((err) =>{
+        newSignoff.save((err) =>{
 
             if(err){
                 console.error(err);
@@ -102,7 +77,7 @@ router.post('/dash',(req,res)=>{
                 // we first flash a message confirm save in data base
                 // go to dashboard since user signed up
                 console.log('data saved in database', );
-                res.redirect('/dash')
+                res.redirect('/signoff')
             }
         })
     }

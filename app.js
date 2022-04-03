@@ -31,6 +31,9 @@ const signupRoutes = require('./routes/signupRoutes');
 // calling the form route in sign up the post route is going yp be in the same file as signup
 // const signupRoutes = require('./routes/signupRoutes');
 
+// calling the sign off route
+const signoffRoutes = require('./routes/signoffRoutes');
+
 
 
 // instasting app to get express method
@@ -122,7 +125,7 @@ app.use('/',dashRoutes);
 app.use('/',signupRoutes);
 // post sign up tp call the post method of the form the action specified in the form attribute
 // same varible for signup routs to call the form
-// app.use('/',signupRoutes);
+app.use('/',signoffRoutes);
 
 // For invalid routes as in if someone hits a non existent route.
 //This should always be the last route after all other routes are excecuted.

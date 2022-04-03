@@ -6,242 +6,210 @@ head
   link(rel='stylesheet' href='/bootstrap-5.1.3-dist copy/css/bootstrap.css')
   script(src='/bootstrap-5.1.3-dist/js/bootstrap.bundle.js')
   link(rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css')
-  script(src='https://cdn.plot.ly/plotly-latest.min.js')
-  link(rel='stylesheet' href='/dash.css')
+  script(src='https://www.gstatic.com/charts/loader.js')
+  link(rel='stylesheet' href='/dashs.css')
   link(rel='stylesheet' href='/theme.css')
-  title Document
+  title ParkVille Dashboard
 div
   .notify
-    span
-      i.bi.bi-bell(style='font-size: 25px; color: #2eb875;')
-  // the offcavas
-  button.btn.btn-bg.left-button(type='button' data-bs-toggle='offcanvas' data-bs-target='#offcanvasExample' aria-controls='offcanvasExample')
-    i.bi.bi-list(style='')
-  #offcanvasExample.offcanvas.offcanvas-start(tabindex='-1' aria-labelledby='offcanvasExampleLabel')
-    .offcanvas-header
-      h5#offcanvasExampleLabel.offcanvas-title | ParkVille 
-      button.btn-close.text-reset(type='button' data-bs-dismiss='offcanvas' aria-label='Close')
-    .offcanvas-body
-      .sidenav
-        .home
-          span
-            i.bi.bi-house
-          a(href='') Home
-        .user
-          span
-            i.bi.bi-person
-          a(href='') User
-        .user
-          span
-            i.bi.bi-tags
-          a(href='') Prices
-      hr
-      //- .log-out
-      //-   a(href='/signup')
-      //-   button.btn.btn-success(type='button') Signup
-        
-      .log-out
-        span
-          i.bi.bi-box-arrow-right
-        a(href='/logout') Log Out
-  // the content
-  div
-    .welcome
-      h4
-        span
-          i.bi.bi-person
-        | Hello ,
-      p Here is an over view of all ParkVille business activities
-    // cards
-    .row
-      .col-sm-6
-        #card-one.card
-          .card-body
-            h5.card-title
-              span All Account Value in UGX
-              span
-                i.bi.bi-eye-slash-fill
-                | Hide Balance
-            .card-text.money
-            if clients.length
-            each client in clients
-              span #{client.paidprice}
-              span.fi.fi-gr
-      .col-sm-6
-        
-        #myPlot.card(style='width:80%;max-width:700px')
-          //
-            <div class="card-body">
-            <h5 class="card-title">Analytics</h5>
-            <div class="card-text">
-            <p>01.01.2021-01.012022 <span>Group by Daily Report</span> <span>UGX</span></p>
-            </div>
-            </div>
-  hr
-  // DATA TABLE
-  div
-    h3#table-head.title-5.m-b-35 Data table
     #data-button.table-data__tool-right
-      // mode reg button
       button#add-button.btn.btn-success.button(type='button' data-bs-toggle='modal' data-bs-target='#exampleModal' data-bs-whatever='@fat')
         | + Add Client
       #exampleModal.modal.fade(tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true')
         .modal-dialog
-          .modal-content
+          #all.modal-content
             .modal-header
               h5#exampleModalLabel.modal-title
-                | Add Client
+                | SERVICE REGISTRATION FORM
               button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
             .modal-body
-              form.row.g-3(name='addClient' method='POST' action='/dash')
+              form#regform.row.g-3(name='register' method='POST' action='/dash')
                 .col-md-6
-                  label.form-label(for='name4') Name
-                  input#inputname4.form-control(type='text' name ='firstname' placeholder='Name')
+                  label.form-label(for='Name4') Name
+                  input#inputName4.form-control(type='text' placeholder='Name' size='' onblur='' name='name' required='')
                 .col-md-6
-                  label.form-label(for='inputPassword4') Phone Number
-                  input#inputPhonenumber4.form-control(type='text' name='phonenumber' placeholder='Phonenumber')
-                .col-12
-                  label.form-label(for='inputNin') NIN number
-                  input#inputNin.form-control(type='text' name='ninnumber' placeholder='NIN')
+                  label.form-label(for='inputPhonenumber4') Phone Number
+                  input#inputPhonenumber4.form-control(type='text' placeholder='phone number' size='' onblur='' name='phonenumber' required='')
+                .col-md-6
+                  label.form-label(for='inputninNumber') NIN Number
+                  input#inputninNumber.form-control(type='text' placeholder='NIN Number' size='' onblur='' name='ninnumber' required='')
+                .col-md-6
+                  label.form-label(for='inputcolor') Color
+                  input#inputcolor.form-control(type='text' placeholder='Color' size='' onblur='' name='color' required='')
                 .col-md-6
                   label.form-label(for='inputnumberplate') Number Plate
-                  input#inputnumberplate.form-control(type='text' name='numberplate')
+                  input#inputnumberplate.form-control(type='text' placeholder='Number Plate' size='' onblur='' name='numberplate' required='')
                 .col-md-6
                   label.form-label(for='inputModel') Model
-                  input#inputModel.form-control(type='text' name='model')
+                  input#inputModel.form-control(type='text' placeholder='Model' size='' onblur='' name='model' required='')
                 .col-md-6
                   label.form-label(for='Date') Date
-                  input#inputDate.form-control(type='date' name='date')
+                  input#inputDate.form-control(type='date' size='' onblur='' name='date' required='')
                 .col-md-6
                   label.form-label(for='inputtime') Time
-                  input#inputtime.form-control(type='time' name='time')
+                  input#inputtime.form-control(type='time' size='' onblur='' name='time' required='')
                 .col-md-6
-                  label.form-label(for='inputcolor') color
-                  input#inputcolor.form-control(type='text' name='color')
-                .col-md-4
                   label.form-label(for='inputgender') Gender
-                  select#inputgender.form-select(type='text' name='gender')
-                    option(selected='') Choose...
+                  select#inputgender.form-select(type='text' name='gender' size='' onblur='' required='')
                     option Male
                     option Female
-                .col-md-4
+                .col-md-6
                   label.form-label(for='inputservice') Service
-                  select#inputservice.form-select(type='text' name='service')
-                    option(selected='') choose
+                  select#inputgender.form-select(type='text' name='service' onblur='' required='')
                     option Parking
-                    option Car Tyer
+                    option Car Tyre
                     option Battery
-                .col-md-4
-                  label.form-label(for='inputtypeofmodel') description
-                  select#inputdescription.form-select(type='text' name='description')
-                    option(selected='') choose
-                    option Personal car
-                    option Taxi 
-                    option Trucks
+                    option Nil
+                .col-md-6
+                  label.form-label(for='inputtypeofmodel') Description
+                  select#inputgender.form-select(type='text' name='description' onblur='' required='')
+                    option Personal Car
+                    option Taxi
                     option Bodaboda
                     option Coaster
-                    option Tyre Pressure 
+                    option Tyre Pressure
                     option Puncture Fixing
                     option Valves
-                    option Bttery Renting
-                .col-md-4
+                    option Battery Renting
+                    option Nil
+                .col-md-6
                   label.form-label(for='inputcolor') Duration
-                  select#inputduration.form-select(type='text' name='duration')
-                    option(selected='') choose
+                  select#inputgender.form-select(type='text' name='duration' onblur='' required='')
                     option Day
                     option Night
-                .col-md-4
-                  label.form-label(for='inputprice') Paid Price UGX
-                  select#inputprice.form-select(type='number' name='paidprice')
-                    option(selected='') choose
+                    option less than 3hrs
+                .col-md-6
+                  label.form-label(for='inputprice') Paid Price
+                  select#inputgender.form-select(type='number' name='paidprice' onblur='' required='')
                     option 10000
-                    option  5000
-                    option  3000
-                    option  2000
-                    option  1000
-                    option  500
-                .col-md-4
-                  label.form-label(for='inputrecipt') battery price
-                  input#inputrecipt.form-control(type='text' name='batteryprice')
-                .col-md-2
-                  label.form-label(for='inputrecipt') Receipt
-                  input#inputrecipt.form-control(type='text' name='receipt')
-                button.btn.btn-outline-secondary(type='button' data-bs-dismiss='modal')
-                | Close
-                button.btn.btn-outline-success(type='submit' value='Submit' name="") 
-                | Register 
-      .btn-group
-        button#export-button.btn.btn-dark(type='button')
-          i.bi.bi-file-earmark-arrow-down
-          | Export
-  // <h3 class="title-5 m-b-35" id="table-head">Data table</h3>
-  #table-content.table-data__tool
-    .table-data__tool-left
-      // Example single danger button
-      .btn-group
-        button.btn.btn-light.dropdown-toggle(type='button' data-bs-toggle='dropdown' aria-expanded='false')
-          | All Properties
-        ul.dropdown-menu
+                    option 5000
+                    option 4000
+                    option 3000
+                    option 2000
+                    option 1000
+                    option 500
+                    option 200
+                    option Nil
+                .col-md-6
+                  label.form-label(for='inputrecipt') Battery Price
+                  input#inputbatteryprice.form-control(type='text' size='' onblur='' name='batteryprice' required='')
+                .col-md-6
+                  label.form-label(for='inputbatterysize') Battery Size
+                  input#inputbatterysize.form-control(type='text' size='' onblur='' name='batterysize' required='')
+                .col-md-6
+                  label.form-label(for='inputcartyreprice') Car Tyre Price
+                  input#inputcartyreprice.form-control(type='text' size='' onblur='' name='cartyreprice' required='')
+                .col-md-6
+                  label.form-label(for='inputcartyresize') Car Tyre Size
+                  input#inputcartyresize.form-control(type='text' size='' onblur='' name='cartyresize' required='')
+                .col-md-6
+                  label.form-label(for='inputcartyremake') Car Tyre Make
+                  input#inputcartyremake.form-control(type='text' size='' onblur='' name='cartyremake' required='')
+                .modal-footer
+                  button.btn.btn-outline-secondary(type='button' data-bs-dismiss='modal')
+                    | Close
+                  button.btn.btn-outline-success(type='submit')
+                    | Register
+      .btn-group.dropdown
+        button(type='button' data-bs-toggle='dropdown' aria-expanded='false')
+          i.bi.bi-person(style='font-size: 45px; color: #2eb875;')
+        ul#dropdown.dropdown-menu
           li
-            a.dropdown-item(href='#') Action
-             
-          li
-            a.dropdown-item(href='#') Another action
-          li
-            a.dropdown-item(href='#') Something else here
-          li
-            hr.dropdown-divider
-          li
-            a.dropdown-item(href='#') Separated link
-      .btn-group
-        button.btn.btn-light.dropdown-toggle(type='button' data-bs-toggle='dropdown' aria-expanded='false')
-          | Today
-        ul.dropdown-menu
-          li
-            a.dropdown-item(href='#') Action
-          li
-            a.dropdown-item(href='#') Another action
-          li
-            a.dropdown-item(href='#') Something else here
-          li
-            hr.dropdown-divider
-          li
-            a.dropdown-item(href='#') Separated link
-  // table
-  .container
-    .table-responsive.table-responsive-data2
-      table.table.table-data2
-        thead
-          tr
-            th Name
-            th Number plate
-            th Service
-            th Duration
-            th Description
-            th Price
-            
-        tbody
-          if clients.length
-          each client in clients 
-           tr.tr-shadow
-              td #{client.firstname}
-              td #{client.numberplate}
-                span.block-email
-              td #{client.service}
-              td #{client.duration}
-              td #{client.description}
-                span.status--process
-              td #{client.paidprice}
-              td 
-                .table-data-feature
-                  button.item(data-toggle='tooltip' data-placement='top' title='Send')
-                    i.bi.bi-send
-                  button.item(data-toggle='tooltip' data-placement='top' title='Edit')
-                    i.bi.bi-pencil-square(style='color:green;')
-                  button.item(data-toggle='tooltip' data-placement='top' title='Delete')
-                    i.bi.bi-trash(style='color:red;')
-                  button.item(data-toggle='tooltip' data-placement='top' title='More')
-                    i.bi.bi-three-dots
-          // stop
-      // END DATA TABLE
-script(src='/dash.js')
+            a(href='/logout')
+              button.log-out(type='button')
+                i.bi.bi-box-arrow-right
+                |  LogOut
+  .logo-two
+    | | ParkVille
+  .welcome
+    h4
+      span
+        i.bi.bi-person
+      | Hello Moses,
+    p Here is an over view of all ParkVille business activities
+  .row
+    .col-sm-6
+      #card-one.card
+        .card-body
+          h5.card-title
+            span All Account Value in UGX
+            span
+              i.bi.bi-eye-slash-fill
+            | Hide Balance
+          .card-text.money
+            | 
+            span
+              img(src='/img/flag.jpeg' alt='' height='35px' width='35px' style='border-radius: 100%; margin-right:10px;')
+    .col-sm-6
+      #card-two.card
+        .card-body
+          h5.card-title ANALYTICS
+          .card-text
+            #myChart(style='width:50%; max-width:600px; height:0px;')
+  hr(style='height:2px;border-width:0;color:#2eb875;background-color: #2eb875')
+.container
+  .table-responsive.table-responsive-data2
+    div
+      h4 Data table
+    table.table.table-data2
+      thead
+        tr
+          th Name
+          th Number plate
+          th Service
+          th Duration
+          th Description
+          th Time
+          th Date
+          th Price
+          th
+      tbody
+        if clients.length
+        each client in clients 
+         tr.tr-shadow
+            td #{client.name}
+            td #{client.numberplate}
+            td #{client.service}
+            td #{client.duration}
+            td #{client.description}
+            td #{client.time}
+            td #{client.date}
+            td #{client.paidprice}
+            td
+             .table-data-feature
+               button.btn.item(type='button' data-bs-toggle='modal' data-bs-target='#exampleModal' data-bs-whatever='@fat')
+                i.bi.bi-pencil-square(style='color:green;')
+               #exampleModal.modal.fade(tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true')
+                .modal-dialog
+                  .modal-content
+                    .modal-header
+                      h5#exampleModalLabel.modal-title New message
+                      button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+                    .modal-body
+                      form
+                        .mb-3
+                          label.col-form-label(for='recipient-name') Recipient:
+                          input#recipient-name.form-control(type='text')
+                        .mb-3
+                          label.col-form-label(for='message-text') Message:
+                          textarea#message-text.form-control
+                    .modal-footer
+                      button.btn.btn-secondary(type='button' data-bs-dismiss='modal') Close
+                      button.btn.btn-primary(type='button') Send message
+               button.btn.item(type='button' data-bs-toggle='modal' data-bs-target='#exampleModaldelete')
+                i.bi.bi-trash(style='color:red;')
+               #exampleModaldelete.modal.fade(tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true')
+                .modal-dialog
+                  #delete-content.modal-content
+                    .modal-header
+                      h5#exampleModaldelete.modal-title Delete Client
+                      button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+                    #body-delete.modal-body
+                      | Are you sure you want to delete client
+                    .modal-footer
+                      button.btn.btn-outline-secondary(type='button' data-bs-dismiss='modal') Cancel
+                      button.btn.btn-danger(type='button') Delete
+        else 
+          p No registered clients yet              
+script(src='/dashs.js')
+script(src='registrationValidation.js')
