@@ -4,6 +4,7 @@ const passport = require('passport');
 const expressValidator= require('express-validator');
 const mongoose = require('mongoose');
 
+const Signoff = require('../models/Signoff')
 // handling routes of home
 // router.get('/signoff',(req,res)=>{
 //     res.render('signoff')
@@ -15,10 +16,10 @@ router.get('/signoff', async(req,res)=>{
     // to pick data from the 
     try {
         // helps return all the members in the collection clients
-        const data = await Client.find({});
+        const data = await Signoff.find({});
         console.log('>>>>>> all clients',data);
         // gives us the file dash and come with the client data or client has same info with data
-        res.render('signoff', {clients : data})
+        res.render('signoff', {signoffs : data})
       } catch(error) {
         return res.status(400).send(
           { 
@@ -34,14 +35,15 @@ router.post('/signoff',(req,res)=>{
     // declaring the variables in the pug file name
     // we are requesting node js to foward the data and the body with the name given only uses name
     const name = req.body.name;
+    const recieptnumber = req.body.recieptnumber;
     const phonenumber = req.body.phonenumber;
     const ninnumber = req.body.ninnumber;
-    const color= req.body.color;
-    const numberplate= req.body.numberplate;
     const model= req.body.model;
     const date= req.body.date;
     const time= req.body.time;
     const gender= req.body. gender;
+    const service= req.body. service;
+
     
     // handling errors
     // incase there is an error we serve back the form
@@ -55,14 +57,14 @@ router.post('/signoff',(req,res)=>{
         // value(property name from schema):property(varible name in route)
         let newSignoff = new Signoff({
             name:name,
+            recieptnumber:recieptnumber,
             phonenumber:phonenumber,
             ninnumber: ninnumber,
-            color: color,
-            numberplate: numberplate,
             model:model,
             date: date,
             time:time,
             gender: gender,
+            service: service,
         });
         // saving the data
         // case of error return err incase no error give message in console and give dash 

@@ -18,19 +18,19 @@ head
         a(href='/') | ParkVille
       form(name='register' method='POST' action='/signup' onsubmit="return ValidateSignUp()")
         label(for='fistname') First Name
-        input#firstname(name='firstname' type='text' placeholder='John')
+        input#firstname(name='firstname' type='text' size= "50" onblur="userN(4,12)" placeholder='John')
         #fName.text-danger.font-weight-bold.small
         label Last Name
-        input#lastname(name='lastname' type='text' placeholder='Doe')
+        input#lastname(name='lastname' type='text' size= "50" onblur="userL(4,12)" placeholder='Doe')
         #lName.text-danger.font-weight-bold.small
         label Email
-        input#email(name='email' type='text' placeholder='john.doe@gmail.com')
+        input#email(name='email' type='email' size= "50" onblur="validateUserEmail()" placeholder='john.doe@gmail.com')
         #email2.text-danger.font-weight-bold.small
         label Password
-        input#password(name='password' type='text' placeholder='********' value='')
+        input#password(name='password' type='password' size= "50" onblur="passVal(8,12)" placeholder='********' value='')
         #pwd.text-danger.font-weight-bold.small
         label Confirm Password
-        input#confirmpassword(name='confirmpassword' type='text' placeholder='*********' value='')
+        input#confirmpassword(name='confirmpassword' type='password' size= "50" onblur="passId()" placeholder='*********' value='')
         #pwdd.text-danger.font-weight-bold.small
         button#submit.btn.btn-success.btn-lg.btn-block(name='' type='submit' style='width:100%; margin-top: 20px; font-weight: bold;' value='Submit')
           | SIGNUP 

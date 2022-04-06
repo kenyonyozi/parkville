@@ -4,7 +4,7 @@ const signoffSchema = mongoose.Schema({
         type: String,
         required:true
     },
-    receiptnumber:{
+    recieptnumber:{
         type: String,
         required:true
     },

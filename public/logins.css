@@ -15,8 +15,13 @@ body {
 }
   
 img {
-    width: 700px;
-    height: 700px;
+    width: 600px;
+    height: 720px;
+    /* padding-top: 50px; */
+    /* padding-left: 50px; */
+}
+.LogIn-box{
+    padding-right: 200px;
 }
   
 .container-main {
@@ -33,7 +38,7 @@ h1 {
   
 form {
     width: 400px;
-    margin-left: 100px;
+    margin-left: 20px;
     margin-top: 50px;
 }
   

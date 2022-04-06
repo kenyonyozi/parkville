@@ -16,7 +16,7 @@ nav.navbar.navbar-light.bg-light.fixed-top
       #button-signoff
         button.btn.btn-success(onclick='window.print()') Print
       div
-        a(href='dash.html')
+        a(href='/dash')
           button.btn.btn-outline-success Back
       div
 // sign off table
@@ -33,7 +33,7 @@ nav.navbar.navbar-light.bg-light.fixed-top
                 | SIGN OFF CLIENT FORM
               button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
             .modal-body
-              form#regform.row.g-3(name='register')
+              form#regform.row.g-3(name='register' method='POST' action='/signoff')
                 .col-md-6
                   label.form-label(for='Name4') Name
                   input#inputName4.form-control(type='text' placeholder='Name' size='' onblur='' name='name' required='')
@@ -77,24 +77,26 @@ nav.navbar.navbar-light.bg-light.fixed-top
       thead
         tr
           th Name
-          th Number plate
+          th Phone Number
           th Reciept Number
           th service
           th Time
           th Date
       tbody
-        tr.tr-shadow
-          td Lori Lynch
-          td ubk 441k
-          td 1234
-          td battery renting
-          td 12.00pm
-          td 08.07.2020
-          td
-            .table-data-feature
-              button.btn.item(type='button' data-bs-toggle='modal' data-bs-target='#exampleModal3' data-bs-whatever='@fat')
+        if signoffs.length 
+        each signoff in signoffs 
+         tr.tr-shadow
+            td #{signoff.name}
+            td #{signoff.phonenumber}
+            td #{signoff.recieptnumber}
+            td #{signoff.service}
+            td #{signoff.time}
+            td #{signoff.date}
+            td
+             .table-data-feature
+               button.btn.item(type='button' data-bs-toggle='modal' data-bs-target='#exampleModal3' data-bs-whatever='@fat')
                 i.bi.bi-pencil-square(style='color:green;')
-              #exampleModal3.modal.fade(tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true')
+               #exampleModal3.modal.fade(tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true')
                 .modal-dialog
                   .modal-content
                     .modal-header
@@ -111,9 +113,9 @@ nav.navbar.navbar-light.bg-light.fixed-top
                     .modal-footer
                       button.btn.btn-secondary(type='button' data-bs-dismiss='modal') Close
                       button.btn.btn-primary(type='button') Send message
-              button.btn.item(type='button' data-bs-toggle='modal' data-bs-target='#exampleModaldelete')
+               button.btn.item(type='button' data-bs-toggle='modal' data-bs-target='#exampleModaldelete')
                 i.bi.bi-trash(style='color:red;')
-              #exampleModaldelete.modal.fade(tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true')
+               #exampleModaldelete.modal.fade(tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true')
                 .modal-dialog
                   #delete-content.modal-content
                     .modal-header

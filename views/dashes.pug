@@ -10,46 +10,8 @@ head
   link(rel='stylesheet' href='/dashs.css')
   link(rel='stylesheet' href='/theme.css')
   title ParkVille Dashboard
-nav.navbar.navbar-light.bg-light.fixed-top
-  .container-fluid
-    h2.logo-two | ParkVille
-    .d-flex
-      #button-signoff
-        a(href='/signoff')
-          button.btn.btn-success(type='submit') Signoff Clients
-      div
-        a(href='/logout')
-          button.btn.btn-outline-success(type='submit') Logout
 div
-  .welcome
-    h4
-      span
-        i.bi.bi-person
-      | Hello Moses,
-    p Here is an over view of all ParkVille business activities
-  .row
-    .col-sm-6
-      #card-one.card
-        .card-body
-          h5.card-title
-            span All Account Value For All Sectors in UGX
-            span
-              i.bi.bi-eye-slash-fill
-            | Hide Balance
-          .card-text.money
-            | UGX 0
-            span
-              img(src='img/flag.jpeg' alt='' height='35px' width='35px' style='border-radius: 100%; margin-right:10px;')
-    .col-sm-6
-      #card-two.card
-        .card-body
-          h5.card-title ANALYTICS
-          .card-text
-            #myChart(style='width:100%; max-width:600px; height:200px;')
-hr(style='height:2px;border-width:0;color:#2eb875;background-color: #2eb875')
-.container
-  // reg client
-  div
+  .notify
     #data-button.table-data__tool-right
       button#add-button.btn.btn-success.button(type='button' data-bs-toggle='modal' data-bs-target='#exampleModal' data-bs-whatever='@fat')
         | + Add Client
@@ -109,7 +71,7 @@ hr(style='height:2px;border-width:0;color:#2eb875;background-color: #2eb875')
                     option Puncture Fixing
                     option Valves
                     option Battery Renting
-                    option Null
+                    option Nil
                 .col-md-6
                   label.form-label(for='inputcolor') Duration
                   select#inputgender.form-select(type='text' name='duration' onblur='' required='')
@@ -127,16 +89,16 @@ hr(style='height:2px;border-width:0;color:#2eb875;background-color: #2eb875')
                     option 1000
                     option 500
                     option 200
-                    option Null
+                    option Nil
                 .col-md-6
                   label.form-label(for='inputrecipt') Battery Price
-                  input#inputbatteryprice.form-control(type='number' size='' onblur='' name='batteryprice' required='')
+                  input#inputbatteryprice.form-control(type='text' size='' onblur='' name='batteryprice' required='')
                 .col-md-6
                   label.form-label(for='inputbatterysize') Battery Size
                   input#inputbatterysize.form-control(type='text' size='' onblur='' name='batterysize' required='')
                 .col-md-6
                   label.form-label(for='inputcartyreprice') Car Tyre Price
-                  input#inputcartyreprice.form-control(type='number' size='' onblur='' name='cartyreprice' required='')
+                  input#inputcartyreprice.form-control(type='text' size='' onblur='' name='cartyreprice' required='')
                 .col-md-6
                   label.form-label(for='inputcartyresize') Car Tyre Size
                   input#inputcartyresize.form-control(type='text' size='' onblur='' name='cartyresize' required='')
@@ -148,6 +110,44 @@ hr(style='height:2px;border-width:0;color:#2eb875;background-color: #2eb875')
                     | Close
                   button.btn.btn-outline-success(type='submit')
                     | Register
+      .btn-group.dropdown
+        button(type='button' data-bs-toggle='dropdown' aria-expanded='false')
+          i.bi.bi-person(style='font-size: 45px; color: #2eb875;')
+        ul#dropdown.dropdown-menu
+          li
+            a(href='/logout')
+              button.log-out(type='button')
+                i.bi.bi-box-arrow-right
+                |  LogOut
+  .logo-two
+    | | ParkVille
+  .welcome
+    h4
+      span
+        i.bi.bi-person
+      | Hello Moses,
+    p Here is an over view of all ParkVille business activities
+  .row
+    .col-sm-6
+      #card-one.card
+        .card-body
+          h5.card-title
+            span All Account Value in UGX
+            span
+              i.bi.bi-eye-slash-fill
+            | Hide Balance
+          .card-text.money
+            | 
+            span
+              img(src='/img/flag.jpeg' alt='' height='35px' width='35px' style='border-radius: 100%; margin-right:10px;')
+    .col-sm-6
+      #card-two.card
+        .card-body
+          h5.card-title ANALYTICS
+          .card-text
+            #myChart(style='width:50%; max-width:600px; height:0px;')
+  hr(style='height:2px;border-width:0;color:#2eb875;background-color: #2eb875')
+.container
   .table-responsive.table-responsive-data2
     div
       h4 Data table
@@ -164,9 +164,9 @@ hr(style='height:2px;border-width:0;color:#2eb875;background-color: #2eb875')
           th Price
           th
       tbody
-        if clients.length 
-        each client in clients
-          tr.tr-shadow
+        if clients.length
+        each client in clients 
+         tr.tr-shadow
             td #{client.name}
             td #{client.numberplate}
             td #{client.service}
@@ -177,9 +177,9 @@ hr(style='height:2px;border-width:0;color:#2eb875;background-color: #2eb875')
             td #{client.paidprice}
             td
              .table-data-feature
-              button.btn.item(type='button' data-bs-toggle='modal' data-bs-target='#exampleModal' data-bs-whatever='@fat')
+               button.btn.item(type='button' data-bs-toggle='modal' data-bs-target='#exampleModal' data-bs-whatever='@fat')
                 i.bi.bi-pencil-square(style='color:green;')
-              #exampleModal.modal.fade(tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true')
+               #exampleModal.modal.fade(tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true')
                 .modal-dialog
                   .modal-content
                     .modal-header
@@ -196,21 +196,23 @@ hr(style='height:2px;border-width:0;color:#2eb875;background-color: #2eb875')
                     .modal-footer
                       button.btn.btn-secondary(type='button' data-bs-dismiss='modal') Close
                       button.btn.btn-primary(type='button') Send message
-              button.btn.item(type='button' data-bs-toggle='modal' data-bs-target='#exampleModaldelete')
+               button.btn.item(type='button' data-bs-toggle='modal' data-bs-target='#exampleModaldelete')
                 i.bi.bi-trash(style='color:red;')
-             #exampleModaldelete.modal.fade(tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true')
-              .modal-dialog
-                #delete-content.modal-content
-                  .modal-header
-                    h5#exampleModaldelete.modal-title Delete Client
-                    button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
-                  #body-delete.modal-body
-                    | Are you sure you want to delete client
-                  .modal-footer
-                   form(method='get' action='/deleteuser/'+client._id)
-                     console.log(#{client._id})
-                     input(type="hidden" name="delete" value=client._id) 
-                     button.btn.btn-outline-secondary#cancel(type='button' data-bs-dismiss='modal') Cancel
-                     button.btn.btn-danger(type='submit' name="delete") Delete
+               #exampleModaldelete.modal.fade(tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true')
+                .modal-dialog
+                  #delete-content.modal-content
+                    .modal-header
+                      h5#exampleModaldelete.modal-title Delete Client
+                      button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+                    #body-delete.modal-body
+                      | Are you sure you want to delete client
+                    .modal-footer
+                     form(method='get' action='/deleteuser/'+client._id)
+                       console.log(#{client._id})
+                       input(type="hidden" name="delete" value=client._id)
+                       button.btn.btn-outline-secondary(type='button' data-bs-dismiss='modal') Cancel
+                       button.btn.btn-danger(type='submit' name="delete") Delete
+        else 
+          p No registered clients yet              
 script(src='/dashs.js')
 script(src='registrationValidation.js')
