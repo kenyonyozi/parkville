@@ -26,7 +26,7 @@ const usersE = () => {
         email.focus()
         return false
     }
-}
+};
 // validating the password 
 const passVal = (max,min) =>{
     let passid = document.loginRegister.password;
@@ -43,4 +43,14 @@ const passVal = (max,min) =>{
     password_error.innerHTML = '';
     password.style.border ='1px solid green'
     return true
-}
+};
+
+const form = document.getElementById('registerform');
+form.addEventListener('submit', function(e) {
+    let validForm = 
+        usersE() &&
+        passVal();
+        if(!validForm){
+            e.preventDefault();
+        }
+});

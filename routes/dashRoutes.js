@@ -16,22 +16,41 @@ const Client = require('../models/Client')
 
 //handles fetching client data from the db to populate the table
 router.get('/dash', async(req,res)=>{
-    // to pick data from the 
-    try {
-        // helps return all the members in the collection clients
-        const data = await Client.find({});
-        console.log('>>>>>> all clients',data);
-        // let totalPayprice = await Client.aggregate({totalPayprice:{$sum: '$paidprice'}})
-        // gives us the file dash and come with the client data or client has same info with data
-        res.render('dash', {clients : data})
-      } catch(error) {
-        return res.status(400).send(
-          { 
-            status: 400,
-            message: 'Oops failed to fetch all clients',
-            error
-          });
+    if (req.session.user) {
+        try {
+            // helps return all the members in the collection clients
+            const data = await Client.find({}).sort({$natural:-1});
+              let totalParking = await Client.aggregate([
+              {$group:{_id:'$all',totalParking:{$sum:'$paidprice'}}}]);
+
+              let totalTyre = await Client.aggregate([
+              {$group:{_id:'$any',totalTyre:{$sum:'$cartyreprice'}}}]);
+
+              let totalBattery = await Client.aggregate([
+              {$group:{_id:'$many',totalBattery:{$sum:'$batteryprice'}}}]);
+            // console.log('>>>>>> all clients',data);
+            // let totalPayprice = await Client.aggregate({totalPayprice:{$sum: '$paidprice'}})
+            // gives us the file dash and come with the client data or client has same info with data
+            res.render('dash', {
+              clients : data,loggedinuser:req.session.user,
+              total:totalParking[0],
+              totalone:totalTyre[0],
+              totaltwo:totalBattery[0]
+            })
+          } catch(error) {
+            return res.status(400).send(
+              { 
+                status: 400,
+                message: 'Oops failed to fetch all clients',
+                error
+              });
+        }
     }
+    else{
+      res.redirect('/login')
+    }
+    // to pick data from the 
+    
 });
 
 // handling routes of dash for post to access reg form on route /dash
@@ -111,15 +130,52 @@ router.post('/dash',(req,res)=>{
 // delete user
 router.get('/deleteuser/:id',async (req,res)=>{
     try {
-        await Client.deleteOne({_id: req.params.id})
+        // const client = await Client.findById(req.params._id)
+        // console.log('client')
+        await Client.deleteOne({_id:req.params.id})
         res.redirect('back')
     } catch (error) {
         res.status(400).send('unable to delete user')
     }
-
 });
 
+// update user
+router.get("/update/:id", async (req, res) => {
+    // if someone isnt logged in they cant update if no session
+    // prepopulated form
+    // if (req.session.user) {
+      try {
+        const updateUser = await Client.findOne({ _id: req.params.id })
+        res.render('dash', {client: updateUser})
+        // res.json(user);
+      } catch (error) {
+        res.status(400).send("unable to find the user in the database");
+      }
+    // }
+    //  else {
+    //     // someones session experiers
+    //  console.log("cant find session");
+    //   res.redirect("/login");
+    //  }
+  });
 
-
+  router.post("/update", async (req, res) => {
+    //   send back the form to the database
+    // if (req.session.user) {
+      try {
+        await Client.findOneAndUpdate({ _id: req.query.id }, req.body)
+        res.redirect("/dash");
+        // console.log(_id);
+        // res.redirect("back");
+      } catch (error) {
+        res.status(400).send("unable to update item");
+      }
+    // } 
+    // else {
+    //   console.log("cant find session");
+    //   res.redirect("/login");
+    // }
+  });
+  
 module.exports = router;
 // exporting the router

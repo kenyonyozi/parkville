@@ -4,6 +4,8 @@ const fastFocus = () =>{
     return true
 };
 
+
+
 // globle variables for password
 // const passid = document.getElementById('password')
 // const passId = document.getElementById('confirmpassword')
@@ -41,7 +43,7 @@ const userL = (max,min) =>{
     var userLen = userL.value.length;
     // if is the function calling the alert and length is wrong giv us
     if(userLen == 0 || userLen >= min || userLen < max ){
-        lastname_error.textContent ='Lirstname must be 4 to 10 characters'
+        lastname_error.textContent ='Lastname must be 4 to 10 characters'
         lastname.style.border ='1px solid red'
         lastname.focus();
         return false
@@ -56,10 +58,10 @@ const userL = (max,min) =>{
 }
 
 
- let userEmail = document.register.email
+//  let userEmail = document.register.email
 // validating email
 const validateUserEmail = () => {
-    // let userEmail = document.register.email
+    let userEmail = document.register.email
     let emailexp = "^(.+)@(.+)$"
     if(userEmail.value.match(emailexp)){
         document.register.password.focus()
@@ -112,3 +114,21 @@ const passId = () =>{
         return true
     }
 }
+
+const form = document.getElementById('registerform');
+form.addEventListener('submit', function(e) {
+    let validForm = 
+        userN() &&
+        userL()&&
+        validateUserEmail()&&
+        passVal()&&
+        passId();
+
+        if(!validForm){
+            e.preventDefault();
+        }
+
+});
+
+
+

@@ -11,12 +11,12 @@ head
 // <div class="container-main">
 .row
   .col
-    img(src='/img/taxi-park.jpeg')
+    img(src='/img/green car.png')
   .col.align-self-center
     .SignUp-box
       h2.logo
         a(href='/') | ParkVille
-      form(name='register' method='POST' action='/signup' onsubmit="return ValidateSignUp()")
+      form#registerform(name='register' method='POST' action='/signup')
         label(for='fistname') First Name
         input#firstname(name='firstname' type='text' size= "50" onblur="userN(4,12)" placeholder='John')
         #fName.text-danger.font-weight-bold.small
@@ -32,7 +32,7 @@ head
         label Confirm Password
         input#confirmpassword(name='confirmpassword' type='password' size= "50" onblur="passId()" placeholder='*********' value='')
         #pwdd.text-danger.font-weight-bold.small
-        button#submit.btn.btn-success.btn-lg.btn-block(name='' type='submit' style='width:100%; margin-top: 20px; font-weight: bold;' value='Submit')
+        button#submit.btn.btn-success.btn-lg.btn-block(name='' type='submit' style='width:100%; margin-top: 20px; font-weight: bold;' value='')
           | SIGNUP 
           i.fa.fa-arrow-right(aria-hidden='true')
       p

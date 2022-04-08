@@ -53,7 +53,7 @@ const clientSchema = mongoose.Schema({
         required:true
     },
     batteryprice:{
-        type: String,
+        type: Number,
         required:true
     },
     batterysize:{
@@ -61,7 +61,7 @@ const clientSchema = mongoose.Schema({
         required:true
     },
     cartyreprice:{
-        type: String,
+        type: Number,
         required:true
     },
     cartyresize:{
