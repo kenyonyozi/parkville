@@ -34,7 +34,7 @@ const signupRoutes = require('./routes/signupRoutes');
 // calling the sign off route
 const signoffRoutes = require('./routes/signoffRoutes');
 
-const editRoutes = require('./routes/editRoutes');
+// const editRoutes = require('./routes/editRoutes');
 
 
 
@@ -128,7 +128,7 @@ app.use('/',signupRoutes);
 // post sign up tp call the post method of the form the action specified in the form attribute
 // same varible for signup routs to call the form
 app.use('/',signoffRoutes);
-app.use('/',editRoutes);
+// app.use('/',editRoutes);
 
 // For invalid routes as in if someone hits a non existent route.
 //This should always be the last route after all other routes are excecuted.

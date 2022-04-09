@@ -11,77 +11,37 @@ head
   title Document
 .kontainer
   if client
-  .headingh2
-    h2 EDIT CLIENT FORM
+    .headingh2
+      h2 EDIT CLIENT FORM
     form#regform.row.g-3(name='register' method='POST' action='/update?id='+client._id)
-    .col-md-6
-      label.form-label(for='Name4') Name
-      input#inputName4.form-control(type='text' placeholder='Name' size='' onblur='' name='name' value=client.name)
-    .col-md-6
-      label.form-label(for='inputPhonenumber4') Phone Number
-      input#inputPhonenumber4.form-control(type='text' placeholder='phone number' size='' onblur='' name='phonenumber' value=client.phonenumber)
-    .col-md-6
-      label.form-label(for='inputninNumber') NIN Number
-      input#inputninNumber.form-control(type='text' placeholder='NIN Number' size='' onblur='' name='ninnumber' value.client.ninnumber)
-    .col-md-6
-      label.form-label(for='inputnumberplate') Number Plate
-      input#inputnumberplate.form-control(type='text' placeholder='Number Plate' size='' onblur='' name='numberplate' value.client.numberplate)
-    .col-md-6
-      label.form-label(for='inputservice') Service
-      select#inputgender.form-select(type='text' name='service' onblur='')
-        option(value='Default' selected='') Choose Service
-        option(value='Parking' selected=client.service==='Parking') Parking
-        option(value='Car Tyre' selected=client.service==='Car Tyre') Car Tyre
-        option(value='Battery' selected=client.service==='Battery') Battery
-        option(value='Not Applicable' selected=client.service==='Not Applicable') Not Applicable
-    .col-md-6
-      label.form-label(for='inputtypeofmodel') Description
-      select#inputgender.form-select(type='text' name='description' onblur='')
-        option(value='Default' selected='') Choose Description
-        option(value='Personal car' selected=client.description==='Parking') Personal Car
-        option(value='Taxi' selected=client.description==='Taxi') Taxi
-        option(value='Bodaboda' selected=client.description==='Bodaboda') Bodaboda
-        option(value='Coaster' selected=client.description==='Coaster') Coaster
-        option(value='Tyre Pressure' selected=client.description==='Tyre Pressure') Tyre Pressure
-        option(value='Puncture Fixing' selected=client.description==='Puncture Fixing') Puncture Fixing
-        option(value='Valves' selected=client.description==='Valves') Valves
-        option(value='Battery Renting' selected=client.description==='Battery Renting') Battery Renting
-        option(value='Not Applicable' selected=client.description==='Not Applicable') Not Applicable
-    .col-md-6
-      label.form-label(for='inputcolor') Duration
-      select#inputgender.form-select(type='text' name='duration' onblur='')
-        option(value='Default' selected='') Choose Duration
-        option(value='Day' selected=client.duration==='Day') Day
-        option(value='Night' selected=client.duration==='Night') Night
-        option(value='less than 3hrs' selected=client.service==='less than 3hrs') less than 3hrs
-    .col-md-6
-      label.form-label(for='inputprice') Paid Price
-      select#inputgender.form-select(type='number' name='paidprice' onblur='')
-        option(value='Default' selected='') Choose Paid Price
-        option 10000
-        option 5000
-        option 4000
-        option 3000
-        option 2000
-        option 1000
-        option 500
-        option 200
-        option 0
-    .col-md-6
-      label.form-label(for='inputrecipt') Battery Price
-      input#inputbatteryprice.form-control(type='text' size='' onblur='' name='batteryprice' value=client.batteryprice)
-    .col-md-6
-      label.form-label(for='inputbatterysize') Battery Size
-      input#inputbatterysize.form-control(type='text' size='' onblur='' name='batterysize' value=client.batterysize)
-    .col-md-6
-      label.form-label(for='inputcartyreprice') Car Tyre Price
-      input#inputcartyreprice.form-control(type='text' size='' onblur='' name='cartyreprice' value=client.cartyreprice)
-    .col-md-6
-      label.form-label(for='inputcartyresize') Car Tyre Size
-      input#inputcartyresize.form-control(type='text' size='' onblur='' name='cartyresize' value=client.cartyresize)
-    .col-md-6
-      label.form-label(for='inputcartyremake') Car Tyre Make
-      input#inputcartyremake.form-control(type='text' size='' onblur='' name='cartyremake' value=client.cartyremake)
-      a(href='/dash') 
-        button#button.btn.btn-outline-secondary(type='button') close
-      button#button.btn.btn-success(type='submit') Edit Entry                  
+      .col-md-6
+        label.form-label(for='Name4') Name
+        input#inputName4.form-control(type='text' placeholder='Name' size='' onblur='' name='name' value=client.name)
+      .col-md-6
+        label.form-label(for='inputPhonenumber4') Phone Number
+        input#inputPhonenumber4.form-control(type='text' placeholder='phone number' size='' onblur='' name='phonenumber' value=client.phonenumber)
+      .col-md-6
+        label.form-label(for='inputnumberplate') Number Plate
+        input#inputnumberplate.form-control(type='text' placeholder='Number Plate' size='' onblur='' name='numberplate' value=client.numberplate)
+      .col-md-6
+        label.form-label(for='inputrecipt') Paid Price
+        input#inputbatteryprice.form-control(type='number' size='' onblur='' name='paidprice' value=client.paidprice)
+      .col-md-6
+        label.form-label(for='inputrecipt') Service
+        input#inputbatteryprice.form-control(type='text' size='' onblur='' name='service' value=client.service)
+      .col-md-6
+        label.form-label(for='inputrecipt') Battery Price
+        input#inputbatteryprice.form-control(type='number' size='' onblur='' name='batteryprice' value=client.batteryprice)
+      .col-md-6
+        label.form-label(for='inputbatterysize') Battery Size
+        input#inputbatterysize.form-control(type='text' size='' onblur='' name='batterysize' value=client.batterysize)
+      .col-md-6
+        label.form-label(for='inputcartyreprice') Car Tyre Price
+        input#inputcartyreprice.form-control(type='number' size='' onblur='' name='cartyreprice' value=client.cartyreprice)
+      .col-md-6
+        label.form-label(for='inputcartyresize') Car Tyre Size
+        input#inputcartyresize.form-control(type='text' size='' onblur='' name='cartyresize' value=client.cartyresize)
+      .col-md-6
+        label.form-label(for='inputcartyremake') Car Tyre Make
+        input#inputcartyremake.form-control(type='text' size='' onblur='' name='cartyremake' value=client.cartyremake)
+        button#button.btn.btn-success(type='submit') Edit Entry                
