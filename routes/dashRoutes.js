@@ -23,19 +23,19 @@ router.get('/dash', async(req,res)=>{
               let totalParking = await Client.aggregate([
               {$group:{_id:'$all',totalParking:{$sum:'$paidprice'}}}]);
 
-              let totalTyre = await Client.aggregate([
-              {$group:{_id:'$any',totalTyre:{$sum:'$cartyreprice'}}}]);
+              // let totalTyre = await Client.aggregate([
+              // {$group:{_id:'$any',totalTyre:{$sum:'$cartyreprice'}}}]);
 
-              let totalBattery = await Client.aggregate([
-              {$group:{_id:'$many',totalBattery:{$sum:'$batteryprice'}}}]);
+              // let totalBattery = await Client.aggregate([
+              // {$group:{_id:'$many',totalBattery:{$sum:'$batteryprice'}}}]);
             // console.log('>>>>>> all clients',data);
             // let totalPayprice = await Client.aggregate({totalPayprice:{$sum: '$paidprice'}})
             // gives us the file dash and come with the client data or client has same info with data
             res.render('dash', {
               clients : data,loggedinuser:req.session.user,
               total:totalParking[0],
-              totalone:totalTyre[0],
-              totaltwo:totalBattery[0]
+              // totalone:totalTyre[0],
+              // totaltwo:totalBattery[0]
             })
           } catch(error) {
             return res.status(400).send(
@@ -146,7 +146,7 @@ router.get("/update/:id", async (req, res) => {
     // if (req.session.user) {
       try {
         const updateUser = await Client.findOne({ _id: req.params.id })
-        res.render('dash', {client: updateUser})
+        res.render('edit', {client: updateUser})
         // res.json(user);
       } catch (error) {
         res.status(400).send("unable to find the user in the database");

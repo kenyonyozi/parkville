@@ -248,5 +248,7 @@ th {
 #signoff-button{
   /* float: right; */
   margin-bottom: 30px;
-
+}
+.btn-danger{
+  margin-left: 10px;
 }

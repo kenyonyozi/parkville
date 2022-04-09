@@ -123,7 +123,6 @@ form.addEventListener('submit', function(e) {
         validateUserEmail()&&
         passVal()&&
         passId();
-
         if(!validForm){
             e.preventDefault();
         }

@@ -37,10 +37,11 @@ nav.navbar.navbar-light.bg-light.fixed-top
           span
             i.bi.bi-eye-slash-fill
           | Hide Balance
-        .card-text.money
+        .card-text.money 
           p  PARKING #{new Intl.NumberFormat().format(total.totalParking)}
-          p  BATTERY #{new Intl.NumberFormat().format(totalone.totalBattery)} 
-          p  CAR TYER #{new Intl.NumberFormat().format(totaltwo.totalTyre)} 
+          //- p  BATTERY #{new Intl.NumberFormat().format(totalone.totalBattery)} 
+          //- p  CAR TYER #{new Intl.NumberFormat().format(totaltwo.totalTyre)} 
+          //- p not totals to display
           span
             img(src='img/flag.jpeg' alt='' height='35px' width='35px' style='border-radius: 100%; margin-right:10px;')
   .col-sm-6
@@ -92,11 +93,13 @@ hr(style='height:2px;border-width:0;color:#2eb875;background-color: #2eb875')
                 .col-md-6
                   label.form-label(for='inputgender') Gender
                   select#inputgender.form-select(type='text' name='gender' size='' onblur='' required='')
+                    option(value='Default' selected='') Choose Gender
                     option Male
                     option Female
                 .col-md-6
                   label.form-label(for='inputservice') Service
                   select#inputgender.form-select(type='text' name='service' onblur='' required='')
+                    option(value='Default' selected='') Choose Service
                     option Parking
                     option Car Tyre
                     option Battery
@@ -104,6 +107,7 @@ hr(style='height:2px;border-width:0;color:#2eb875;background-color: #2eb875')
                 .col-md-6
                   label.form-label(for='inputtypeofmodel') Description
                   select#inputgender.form-select(type='text' name='description' onblur='' required='')
+                    option(value='Default' selected='') Choose Description
                     option Personal Car
                     option Taxi
                     option Bodaboda
@@ -116,12 +120,14 @@ hr(style='height:2px;border-width:0;color:#2eb875;background-color: #2eb875')
                 .col-md-6
                   label.form-label(for='inputcolor') Duration
                   select#inputgender.form-select(type='text' name='duration' onblur='' required='')
+                    option(value='Default' selected='') Choose Duration
                     option Day
                     option Night
                     option less than 3hrs
                 .col-md-6
                   label.form-label(for='inputprice') Paid Price
                   select#inputgender.form-select(type='number' name='paidprice' onblur='' required='')
+                    option(value='Default' selected='') Choose Paid Price
                     option 10000
                     option 5000
                     option 4000
@@ -130,7 +136,7 @@ hr(style='height:2px;border-width:0;color:#2eb875;background-color: #2eb875')
                     option 1000
                     option 500
                     option 200
-                    option Null
+                    option 0
                 .col-md-6
                   label.form-label(for='inputrecipt') Battery Price
                   input#inputbatteryprice.form-control(type='number' size='' onblur='' name='batteryprice' required='')
@@ -184,108 +190,13 @@ hr(style='height:2px;border-width:0;color:#2eb875;background-color: #2eb875')
            td #{client.cartyreprice}
            td
             .table-data-feature
-              button.btn.item(type='button' data-bs-toggle='modal' data-bs-target='#exampleModal' data-bs-whatever='@fat')
-                i.bi.bi-pencil-square(style='color:green;')
-              #exampleModal.modal.fade(tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true')
-                .modal-dialog
-                  #all.modal-content
-                   if client
-                    .modal-header
-                      h5#exampleModalLabel.modal-title
-                        | SERVICE REGISTRATION FORM
-                      button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
-                    .modal-body
-                      form#regform.row.g-3(name='register' method="POST" action='/update?id='+client._id)
-                        .col-md-6
-                          label.form-label(for='Name4') Name
-                          input#inputName4.form-control(type='text' placeholder='Name' size='' onblur='' name='name' value= client.fullname required='')
-                        .col-md-6
-                          label.form-label(for='inputPhonenumber4') Phone Number
-                          input#inputPhonenumber4.form-control(type='text' placeholder='phone number' size='' onblur='' name='phonenumber' value='' required='')
-                        .col-md-6
-                          label.form-label(for='inputninNumber') NIN Number
-                          input#inputninNumber.form-control(type='text' placeholder='NIN Number' size='' onblur='' name='ninnumber' value='' required='')
-                        .col-md-6
-                          label.form-label(for='inputcolor') Color
-                          input#inputcolor.form-control(type='text' placeholder='Color' size='' onblur='' name='color' value='' required='')
-                        .col-md-6
-                          label.form-label(for='inputnumberplate') Number Plate
-                          input#inputnumberplate.form-control(type='text' placeholder='Number Plate' size='' onblur='' name='numberplate' value='' required='')
-                        .col-md-6
-                          label.form-label(for='inputModel') Model
-                          input#inputModel.form-control(type='text' placeholder='Model' size='' onblur='' name='model' value='' required='')
-                        .col-md-6
-                          label.form-label(for='Date') Date
-                          input#inputDate.form-control(type='date' size='' onblur='' name='date' value='' required='')
-                        .col-md-6
-                          label.form-label(for='inputtime') Time
-                          input#inputtime.form-control(type='time' size='' onblur='' name='time' value='' required='')
-                        .col-md-6
-                          label.form-label(for='inputgender') Gender
-                          select#inputgender.form-select(type='text' name='gender' size='' onblur='' value='' required='')
-                            option Male
-                            option Female
-                        .col-md-6
-                          label.form-label(for='inputservice') Service
-                          select#inputgender.form-select(type='text' name='service' onblur='' value='' required='')
-                            option Parking
-                            option Car Tyre
-                            option Battery
-                            option Nil
-                        .col-md-6
-                          label.form-label(for='inputtypeofmodel') Description
-                          select#inputgender.form-select(type='text' name='description' onblur='' value='' required='')
-                            option Personal Car
-                            option Taxi
-                            option Bodaboda
-                            option Coaster
-                            option Tyre Pressure
-                            option Puncture Fixing
-                            option Valves
-                            option Battery Renting
-                            option Null
-                        .col-md-6
-                          label.form-label(for='inputcolor') Duration
-                          select#inputgender.form-select(type='text' name='duration' onblur='' value='' required='')
-                            option Day
-                            option Night
-                            option less than 3hrs
-                        .col-md-6
-                          label.form-label(for='inputprice') Paid Price
-                          select#inputgender.form-select(type='number' name='paidprice' onblur='' value='' required='')
-                            option 10000
-                            option 5000
-                            option 4000
-                            option 3000
-                            option 2000
-                            option 1000
-                            option 500
-                            option 200
-                            option Null
-                        .col-md-6
-                          label.form-label(for='inputrecipt') Battery Price
-                          input#inputbatteryprice.form-control(type='text' size='' onblur='' name='batteryprice' value='' required='')
-                        .col-md-6
-                          label.form-label(for='inputbatterysize') Battery Size
-                          input#inputbatterysize.form-control(type='text' size='' onblur='' name='batterysize' value='' required='')
-                        .col-md-6
-                          label.form-label(for='inputcartyreprice') Car Tyre Price
-                          input#inputcartyreprice.form-control(type='text' size='' onblur='' name='cartyreprice' value='' required='')
-                        .col-md-6
-                          label.form-label(for='inputcartyresize') Car Tyre Size
-                          input#inputcartyresize.form-control(type='text' size='' onblur='' name='cartyresize' value='' required='')
-                        .col-md-6
-                          label.form-label(for='inputcartyremake') Car Tyre Make
-                          input#inputcartyremake.form-control(type='text' size='' onblur='' name='cartyremake' value='' required='')
-                        .modal-footer
-                          button.btn.btn-outline-secondary(type='button' data-bs-dismiss='modal')
-                            | Close
-                          button.btn.btn-outline-success(type='submit')
-                            | Register
+              a(href='/update/'+client._id)
+                button.btn.item(type='button')
+                 i.bi.bi-pencil-square(style='color:green;')
               // delete
               button.btn.item(type='button' data-bs-toggle='modal' data-bs-target='#exampleModaldelete')
                 i.bi.bi-trash(style='color:red;')
-              #exampleModaldelete.modal.fade(tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true')
+              #exampleModaldelete.modal.fade(tabindex='' aria-labelledby='exampleModalLabel' aria-hidden='true')
                 .modal-dialog
                   #delete-content.modal-content
                     .modal-header
