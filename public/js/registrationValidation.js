@@ -53,11 +53,12 @@ const Vform = () => {
     const cartyremake = document.getElementById('inputcartyremake')
     const cartyremakeError = document.getElementById('cartyremakeError');
 
+
 // regex
-    const userRegex =  /^[A-Z][a-z]*$/; // for name capital and small letters 
-    const ninRegex = /^[0-9a-zA-Z]{14}$/; // for NIN exactly 14 alphanumric characters
+    const userRegex = /[A-Z][a-z]*( [A-Z][a-z]*)*/; // for name capital and small letters 
+    const ninRegex = /^[A-Z]{2}[0-9A-Z]{12}$/; // for NIN exactly 14 alphanumric characters
     const phoneRegex = /^\d{10}$/; // for phone number
-    const numberplateRegex = /^[0-9A-Z]+$/; //for number plate
+    const numberplateRegex = /^[U][A-Z]{2} [0-9A-Z]{4}$/; //for number plate starting with U
 
     if(userN.value != "" && userN.value.match(userRegex)){
         userN.style.border = "1px solid green"

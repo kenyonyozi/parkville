@@ -6,6 +6,7 @@ head
   link(rel='stylesheet' href='/bootstrap-5.1.3-dist copy/css/bootstrap.css')
   script(src='/bootstrap-5.1.3-dist/js/bootstrap.bundle.js')
   link(rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css')
+  script(src='/signoff.js')
   link(rel='stylesheet' href='/dashs.css')
   link(rel='stylesheet' href='/theme.css')
   title sign off
@@ -33,40 +34,51 @@ nav.navbar.navbar-light.bg-light.fixed-top
                 | SIGN OFF CLIENT FORM
               button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
             .modal-body
-              form#regform.row.g-3(name='register' method='POST' action='/signoff')
+              form#regform.row.g-3(name='register' method='POST' action='/signoff' onsubmit='return signoffForm();')
                 .col-md-6
-                  label.form-label(for='Name4') Name
-                  input#inputName4.form-control(type='text' placeholder='Name' size='' onblur='' name='name' required='')
+                  label.form-label(for='inputName4') Name
+                  input#inputName4.form-control(type='text' placeholder='Name' size='' name='name')
+                  span#userError
                 .col-md-6
                   label.form-label(for='inputRecieptnumber4') Reciept Number
-                  input#inputRecieptnumber4.form-control(type='text' placeholder='reciept number' size='' onblur='' name='recieptnumber' required='')
+                  input#inputRecieptnumber4.form-control(type='text' placeholder='reciept number' size='' name='recieptnumber')
+                  span#recieptnumberError
                 .col-md-6
                   label.form-label(for='inputninNumber') NIN Number
-                  input#inputninNumber.form-control(type='text' placeholder='NIN Number' size='' onblur='' name='ninnumber' required='')
+                  input#inputninNumber.form-control(type='text' placeholder='NIN Number' size='' name='ninnumber')
+                  span#ninnumberError
                 .col-md-6
                   label.form-label(for='inputPhonenumber') phone number
-                  input#inputPhonenumber.form-control(type='text' placeholder='phonenumber' size='' onblur='' name='phonenumber' required='')
+                  input#inputPhonenumber4.form-control(type='text' placeholder='phonenumber' size='' name='phonenumber')
+                  span#phonenumberError
                 .col-md-6
                   label.form-label(for='inputModel') Model
-                  input#inputModel.form-control(type='text' placeholder='Model' size='' onblur='' name='model' required='')
+                  input#inputModel.form-control(type='text' placeholder='Model' size='' name='model')
+                  span#modelError
                 .col-md-6
                   label.form-label(for='Date') Date
-                  input#inputDate.form-control(type='date' size='' onblur='' name='date' required='')
+                  input#inputDate.form-control(type='date' size='' name='date')
+                  span#dateError
                 .col-md-6
                   label.form-label(for='inputtime') Time
-                  input#inputtime.form-control(type='time' size='' onblur='' name='time' required='')
+                  input#inputtime.form-control(type='time' size='' name='time')
+                  span#timeError
                 .col-md-6
                   label.form-label(for='inputgender') Gender
-                  select#inputgender.form-select(type='text' name='gender' size='' onblur='' required='')
+                  select#inputgender.form-select(type='text' name='gender' size='')
+                    option(value='Default' selected='') Choose Gender
                     option Male
                     option Female
+                  span#genderError
                 .col-md-6
                   label.form-label(for='inputservice') Service
-                  select#inputgender.form-select(type='text' name='service' onblur='' required='')
+                  select#inputservice.form-select(type='text' name='service')
+                    option(value='Default' selected='') Choose Service
                     option Car
                     option Renting Battery
                     option Renting Bodaboda
                     option Nil
+                  span#serviceError
                 .modal-footer
                   button.btn.btn-outline-secondary(type='button' data-bs-dismiss='modal')
                     | Close
@@ -92,10 +104,10 @@ nav.navbar.navbar-light.bg-light.fixed-top
             td #{signoff.service}
             td #{signoff.time}
             td #{signoff.date}
-            td
-             .table-data-feature
-                form(method='get', action='/deleteuser/'+signoff._id)
-                  console.log(#{signoff._id})
-                  input(type="hidden" name='delete' value=signoff._id) 
-                  button.btn.item(type='submit' name='delete')
-                   i.bi.bi-trash(style='color:red;')
+            //- td
+            //-  .table-data-feature
+            //-     form(method='get', action='/deleteuser/'+signoff._id)
+            //-       console.log(#{signoff._id})
+            //-       input(type="hidden" name='delete' value=signoff._id) 
+            //-       button.btn.item(type='submit' name='delete')
+            //-        i.bi.bi-trash(style='color:red;')

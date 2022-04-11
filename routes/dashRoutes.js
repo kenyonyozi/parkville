@@ -28,7 +28,7 @@ router.get('/dash', async(req,res)=>{
             }}]);
             // values parking from the same parking
             // console.log('>>>>>> all clients',data);
-            console.log('collection of earning', totalEarnings)
+            // console.log('collection of earning', totalEarnings)
             // gives us the file dash and come with the client data or client has same info with data
             res.render('dash', {
               clients : data,loggedinuser:req.session.user,
