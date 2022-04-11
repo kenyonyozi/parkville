@@ -94,35 +94,8 @@ nav.navbar.navbar-light.bg-light.fixed-top
             td #{signoff.date}
             td
              .table-data-feature
-               button.btn.item(type='button' data-bs-toggle='modal' data-bs-target='#exampleModal3' data-bs-whatever='@fat')
-                i.bi.bi-pencil-square(style='color:green;')
-               #exampleModal3.modal.fade(tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true')
-                .modal-dialog
-                  .modal-content
-                    .modal-header
-                      h5#exampleModalLabel.modal-title New message
-                      button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
-                    .modal-body
-                      form
-                        .mb-3
-                          label.col-form-label(for='recipient-name') Recipient:
-                          input#recipient-name.form-control(type='text')
-                        .mb-3
-                          label.col-form-label(for='message-text') Message:
-                          textarea#message-text.form-control
-                    .modal-footer
-                      button.btn.btn-secondary(type='button' data-bs-dismiss='modal') Close
-                      button.btn.btn-primary(type='button') Send message
-               button.btn.item(type='button' data-bs-toggle='modal' data-bs-target='#exampleModaldelete')
-                i.bi.bi-trash(style='color:red;')
-               #exampleModaldelete.modal.fade(tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true')
-                .modal-dialog
-                  #delete-content.modal-content
-                    .modal-header
-                      h5#exampleModaldelete.modal-title Delete Client
-                      button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
-                    #body-delete.modal-body
-                      | Are you sure you want to delete client
-                    .modal-footer
-                      button.btn.btn-outline-secondary(type='button' data-bs-dismiss='modal') Cancel
-                      button.btn.btn-danger(type='button') Delete
+                form(method='get', action='/deleteuser/'+signoff._id)
+                  console.log(#{signoff._id})
+                  input(type="hidden" name='delete' value=signoff._id) 
+                  button.btn.item(type='submit' name='delete')
+                   i.bi.bi-trash(style='color:red;')

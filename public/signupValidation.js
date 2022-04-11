@@ -17,44 +17,43 @@ const password_error = document.getElementById('pwd');
 const confirmpassword_error = document.getElementById('pwdd');
 
 // validating the firstname
-const userN = (max,min) =>{
+const userN = () =>{
     let userN = document.register.firstname;
-    var userLen = userN.value.length;
+    var userexp = /^[A-Z][a-z]*$/;
     // if is the function calling the alert and length is wrong giv us
-    if(userLen == 0 || userLen >= min || userLen < max ){
+    if(userN.value.match(userexp)){
+        // if its correct send us to the pass word line 
+       document.register.lastname.focus()
+       firstname_error.innerHTML = '';
+       firstname.style.border ='1px solid green'
+       return true
+    }else{
         // alert('user id shouldnt be empty/length should be between'+ max +'to'+ min)
-        firstname_error.textContent ='Firstname must be 4 to 10 characters'
-        firstname.style.border ='1px solid red'
-        firstname.focus();
-        return false
-      
-        
+     firstname_error.textContent ='Firstname must start with capital letter'
+     firstname.style.border ='1px solid red'
+     firstname.focus();
+     return false
     }
-    // if its correct send us to the pass word line 
-    document.register.lastname.focus()
-    firstname_error.innerHTML = '';
-    firstname.style.border ='1px solid green'
-    return true
 }
 
 // validating the lastname
-const userL = (max,min) =>{
+const userL = () =>{
     let userL = document.register.lastname;
-    var userLen = userL.value.length;
+    var userexp = /^[A-Z][a-z]*$/;
     // if is the function calling the alert and length is wrong giv us
-    if(userLen == 0 || userLen >= min || userLen < max ){
-        lastname_error.textContent ='Lastname must be 4 to 10 characters'
+    if(userL.value.match(userexp)){
+        // if its correct send us to the pass word line 
+        document.register.email.focus()
+        lastname_error.innerHTML = '';
+        lastname.style.border ='1px solid green'
+        return true
+    }
+    else{
+        lastname_error.textContent ='Lastname start with capital letter'
         lastname.style.border ='1px solid red'
         lastname.focus();
         return false
-      
-        
     }
-    // if its correct send us to the pass word line 
-    document.register.email.focus()
-    lastname_error.innerHTML = '';
-    lastname.style.border ='1px solid green'
-    return true
 }
 
 

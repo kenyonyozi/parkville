@@ -7,6 +7,7 @@ head
   script(src='/bootstrap-5.1.3-dist/js/bootstrap.bundle.js')
   link(rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css')
   script(src='https://www.gstatic.com/charts/loader.js')
+  script(src='/js/registrationValidation.js')
   link(rel='stylesheet' href='/dashs.css')
   link(rel='stylesheet' href='/theme.css')
   title ParkVille Dashboard
@@ -39,11 +40,11 @@ nav.navbar.navbar-light.bg-light.fixed-top
           | Hide Balance
         .card-text.money 
           p  PARKING #{new Intl.NumberFormat().format(total.totalParking)}
-          //- p  BATTERY #{new Intl.NumberFormat().format(totalone.totalBattery)} 
-          //- p  CAR TYER #{new Intl.NumberFormat().format(totaltwo.totalTyre)} 
+          p  BATTERY #{new Intl.NumberFormat().format(total.totalBattery)} 
+          p  CAR TYER #{new Intl.NumberFormat().format(total.totalCartyre)} 
           //- p not totals to display
           span
-            img(src='img/flag.jpeg' alt='' height='35px' width='35px' style='border-radius: 100%; margin-right:10px;')
+            //- img(src='img/flag.jpeg' alt='' height='35px' width='35px' style='border-radius: 100%; margin-right:10px;')
   .col-sm-6
     #card-two.card
       .card-body
@@ -65,48 +66,58 @@ hr(style='height:2px;border-width:0;color:#2eb875;background-color: #2eb875')
                 | SERVICE REGISTRATION FORM
               button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
             .modal-body
-              form#regform.row.g-3(name='register' method='POST' action='/dash')
+              form#regform.row.g-3(name='register' method='POST' action='/dash' onsubmit='return Vform();')
                 .col-md-6
-                  label.form-label(for='Name4') Name
-                  input#inputName4.form-control(type='text' placeholder='Name' size='' onblur='' name='name' required='')
+                  label.form-label(for='inputName4') Name
+                  input#inputName4.form-control(type='text' placeholder='Name' size='' onblur='' name='name')
+                  span#userError
                 .col-md-6
                   label.form-label(for='inputPhonenumber4') Phone Number
-                  input#inputPhonenumber4.form-control(type='text' placeholder='phone number' size='' onblur='' name='phonenumber' required='')
+                  input#inputPhonenumber4.form-control(type='text' placeholder='phone number' size='' onblur='' name='phonenumber')
+                  span#phonenumberError
                 .col-md-6
                   label.form-label(for='inputninNumber') NIN Number
-                  input#inputninNumber.form-control(type='text' placeholder='NIN Number' size='' onblur='' name='ninnumber' required='')
+                  input#inputninNumber.form-control(type='text' placeholder='NIN Number' size='' onblur='' name='ninnumber')
+                  span#ninnumberError
                 .col-md-6
                   label.form-label(for='inputcolor') Color
-                  input#inputcolor.form-control(type='text' placeholder='Color' size='' onblur='' name='color' required='')
+                  input#inputcolor.form-control(type='text' placeholder='Color' size='' onblur='' name='color')
+                  span#colorError
                 .col-md-6
                   label.form-label(for='inputnumberplate') Number Plate
-                  input#inputnumberplate.form-control(type='text' placeholder='Number Plate' size='' onblur='' name='numberplate' required='')
+                  input#inputnumberplate.form-control(type='text' placeholder='Number Plate' size='' onblur='' name='numberplate')
+                  span#numberplateError
                 .col-md-6
                   label.form-label(for='inputModel') Model
-                  input#inputModel.form-control(type='text' placeholder='Model' size='' onblur='' name='model' required='')
+                  input#inputModel.form-control(type='text' placeholder='Model' size='' onblur='' name='model')
+                  span#modelError
                 .col-md-6
                   label.form-label(for='Date') Date
-                  input#inputDate.form-control(type='date' size='' onblur='' name='date' required='')
+                  input#inputDate.form-control(type='date' size='' onblur='' name='date')
+                  span#dateError
                 .col-md-6
                   label.form-label(for='inputtime') Time
-                  input#inputtime.form-control(type='time' size='' onblur='' name='time' required='')
+                  input#inputtime.form-control(type='time' size='' onblur='' name='time')
+                  span#timeError
                 .col-md-6
                   label.form-label(for='inputgender') Gender
-                  select#inputgender.form-select(type='text' name='gender' size='' onblur='' required='')
+                  select#inputgender.form-select(type='text' name='gender' size='' onblur='')
                     option(value='Default' selected='') Choose Gender
                     option Male
                     option Female
+                  span#genderError
                 .col-md-6
                   label.form-label(for='inputservice') Service
-                  select#inputgender.form-select(type='text' name='service' onblur='' required='')
+                  select#inputservice.form-select(type='text' name='service' onblur='')
                     option(value='Default' selected='') Choose Service
                     option Parking
                     option Car Tyre
                     option Battery
-                    option Nil
+                    option Nill
+                  span#serviceError
                 .col-md-6
                   label.form-label(for='inputtypeofmodel') Description
-                  select#inputgender.form-select(type='text' name='description' onblur='' required='')
+                  select#inputdescription.form-select(type='text' name='description' onblur='')
                     option(value='Default' selected='') Choose Description
                     option Personal Car
                     option Taxi
@@ -117,41 +128,46 @@ hr(style='height:2px;border-width:0;color:#2eb875;background-color: #2eb875')
                     option Valves
                     option Battery Renting
                     option Null
+                  span#descriptionError
                 .col-md-6
                   label.form-label(for='inputcolor') Duration
-                  select#inputgender.form-select(type='text' name='duration' onblur='' required='')
+                  select#inputduration.form-select(type='text' name='duration' onblur='')
                     option(value='Default' selected='') Choose Duration
                     option Day
                     option Night
                     option less than 3hrs
+                  span#durationError
                 .col-md-6
-                  label.form-label(for='inputprice') Paid Price
-                  select#inputgender.form-select(type='number' name='paidprice' onblur='' required='')
-                    option(value='Default' selected='') Choose Paid Price
+                  label.form-label(for='inputprice') Parking Price
+                  select#inputpaidprice.form-select(type='number' name='paidprice' onblur='')
+                    option(value='Default' selected='') Choose Parking Price
                     option 10000
-                    option 5000
                     option 4000
                     option 3000
                     option 2000
                     option 1000
-                    option 500
-                    option 200
                     option 0
+                  span#paidpriceError
                 .col-md-6
                   label.form-label(for='inputrecipt') Battery Price
-                  input#inputbatteryprice.form-control(type='number' size='' onblur='' name='batteryprice' required='')
+                  input#inputbatteryprice.form-control(type='number' size='' onblur='' name='batteryprice')
+                  span#batterypriceError
                 .col-md-6
                   label.form-label(for='inputbatterysize') Battery Size
-                  input#inputbatterysize.form-control(type='text' size='' onblur='' name='batterysize' required='')
+                  input#inputbatterysize.form-control(type='text' size='' onblur='' name='batterysize')
+                  span#batterysizeError
                 .col-md-6
                   label.form-label(for='inputcartyreprice') Car Tyre Price
-                  input#inputcartyreprice.form-control(type='number' size='' onblur='' name='cartyreprice' required='')
+                  input#inputcartyreprice.form-control(type='number' size='' onblur='' name='cartyreprice')
+                  span#cartyrepriceError
                 .col-md-6
                   label.form-label(for='inputcartyresize') Car Tyre Size
-                  input#inputcartyresize.form-control(type='text' size='' onblur='' name='cartyresize' required='')
+                  input#inputcartyresize.form-control(type='text' size='' onblur='' name='cartyresize')
+                  span#cartyresizeError
                 .col-md-6
                   label.form-label(for='inputcartyremake') Car Tyre Make
-                  input#inputcartyremake.form-control(type='text' size='' onblur='' name='cartyremake' required='')
+                  input#inputcartyremake.form-control(type='text' size='' onblur='' name='cartyremake')
+                  span#cartyremakeError
                 .modal-footer
                   button.btn.btn-outline-secondary(type='button' data-bs-dismiss='modal')
                     | Close
@@ -170,7 +186,7 @@ hr(style='height:2px;border-width:0;color:#2eb875;background-color: #2eb875')
           th Description
           th Time
           th Date
-          th Price
+          th Parking Price
           th Battery Price
           th Car Tyre Price
           th
@@ -194,21 +210,10 @@ hr(style='height:2px;border-width:0;color:#2eb875;background-color: #2eb875')
                 button.btn.item(type='button')
                  i.bi.bi-pencil-square(style='color:green;')
               // delete
-              button.btn.item(type='button' data-bs-toggle='modal' data-bs-target='#exampleModaldelete')
-                i.bi.bi-trash(style='color:red;')
-              #exampleModaldelete.modal.fade(tabindex='' aria-labelledby='exampleModalLabel' aria-hidden='true')
-                .modal-dialog
-                  #delete-content.modal-content
-                    .modal-header
-                      h5#exampleModaldelete.modal-title Delete Client
-                      button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
-                    #body-delete.modal-body
-                      | Are you sure you want to delete client
-                    .modal-footer
-                     form(method='get' action='/deleteuser/'+client._id) 
-                       console.log(#{client._id})
-                       input(type="hidden" name="delete" value=client._id) 
-                       button.btn.btn-outline-secondary(type='button' data-bs-dismiss='modal') Cancel
-                       button.btn.btn-danger(type='submit' name='delete') Delete
-script(src='dashs.js')
-script(src='registrationValidation.js')
+              form(method='get', action='/deleteuser/'+client._id)
+                console.log(#{client._id})
+                input(type="hidden" name='delete' value=client._id)
+                button.btn.item(type='submit' name='delete')
+                 i.bi.bi-trash(style='color:red;')
+script(src='/dashs.js')
+//- script(src='/registrationValidation.js')
