@@ -15,6 +15,7 @@ const Client = require('../models/Client')
 // });
 
 //handles fetching client data from the db to populate the table
+// and also the totals and login with first name
 router.get('/dash', async(req,res)=>{
     if (req.session.user) {
         try {
