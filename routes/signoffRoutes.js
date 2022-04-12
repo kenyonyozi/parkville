@@ -86,15 +86,15 @@ router.post('/signoff',(req,res)=>{
 });
 
 // delete user
-router.get('/deleteuser/:id',async (req,res)=>{
-    try {
-        // console.log('client')
-        await Signoff.deleteOne({_id:req.params.id})
-        res.redirect('back')
-    } catch (error) {
-        res.status(400).send('unable to delete user')
-    }
-});
+// router.get('/deleteuser/:id',async (req,res)=>{
+//     try {
+//         // console.log('client')
+//         await Signoff.deleteOne({_id:req.params.id})
+//         res.redirect('back')
+//     } catch (error) {
+//         res.status(400).send('unable to delete user')
+//     }
+// });
 
 module.exports = router;
 // exporting the router
