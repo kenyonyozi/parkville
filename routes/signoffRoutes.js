@@ -4,7 +4,7 @@ const passport = require('passport');
 const expressValidator= require('express-validator');
 const mongoose = require('mongoose');
 
-const Signoff = require('../models/Signoff')
+const Signoff = require('../models/signoff')
 // handling routes of home
 // router.get('/signoff',(req,res)=>{
 //     res.render('signoff')
