@@ -1,4 +1,5 @@
 // require the packages we are going to use 
+require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const flash = require('connect-flash');
@@ -15,11 +16,14 @@ const expressSession = require('express-session')({
     secret: 'secret',
     resave: false,
     saveUninitialized: false
-  });
+});
   
+const { PORT } = process.env
+const { WELCOME_MESSAGE, DATABASE_URL } = process.env
+
 // impoting routes
 // importing the databases configuration
-const config = require('./config/database');
+// const config = require('./config/database');
 // calling the login in route
 const loginRoutes = require('./routes/loginRoutes');
 // calling the home page route
@@ -43,16 +47,15 @@ const app = express();
 
 //we are creating a conection to mongo database from from config file in the controller(app.js)
 // connect is a method of mongo
-mongoose.connect(config.database);
-const db = mongoose.connection;
-// if ok console log message
-db.once('open',()=>{
-    console.log('connected to mongodb')
-});
-// telling the console if theres an error
-db.on('error',(err)=>{
-    console.log(ErrorEvent)
-});
+//spining database
+mongoose.connect(DATABASE_URL).then(() => {
+    app.listen(PORT, ()=> {
+        let message = `${WELCOME_MESSAGE} ${PORT}`
+        console.log(message)
+    });
+  }).catch(error => {
+    console.error("Failed to start the server due to : ",error)
+  })
  
 // telling the app we are using view engine
 // setting up the engine 
@@ -138,9 +141,9 @@ app.get('*', (req, res) => {
   })
   
 
-app.listen(3000,()=>{
-    console.log('server is listening at port 3000');
-});
+// app.listen(3000,()=>{
+//     console.log('server is listening at port 3000');
+// });
 
 
 
